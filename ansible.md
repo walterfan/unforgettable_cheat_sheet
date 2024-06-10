@@ -18,21 +18,6 @@
 | notify | This keyword used to trigger the handlers when specific conditions are matched such as service state changes. |
 
 
-## ansible modules
-
-| Ansible Modules | Usage |
-| --- | --- |
-| apt | This module manages the packages on Debian and Ubuntu Systems. |
-| yum | This module manages the packages on Red Hat/ Cent [OS](https://www.geeksforgeeks.org/what-is-an-operating-system/) systems|
-| copy | This module helps in copying the files from local or Remote system to Destination system. |
-| file | This module manages the files and directories in local or Remote system. |
-| service | This module manages the services in the ansible|
-| shell | This module helps in executing shell commands on remote hosts. |
-| template | This module help in using the Jinja2 templates allowing dynamic content usage. |
-| cron | This module helps in managing the cron jobs, including the creation, modification and removal. |
-| git | This module helps in managing the repositories allowing tasks such as cloning, pulling and pushing. |
-
-
 ## ansible cli
 
 refer to https://docs.ansible.com/ansible/latest/command_guide/cheatsheet.html
@@ -142,8 +127,6 @@ ansible-doc -t module -l
 ```
 
 
-
-
 ### ansible command line
 
 | Category | Command/Option | Explanation |
@@ -228,6 +211,156 @@ ansible-doc -t module -l
 | Modules | `ansible localhost -m copy -a "src=/etc/hosts dest=/tmp/hosts"` | Copy '/etc/hosts' to '/tmp/hosts' on the local host using the copy module. |
 | Modules | `ansible localhost -m file -a "path=/tmp/test state=absent"` | Remove file '/tmp/test' on the local host using the file module. |
 | Modules | `ansible localhost -m apt -a "name=nginx state=latest"` | Install the latest version of 'nginx' on the local host using the apt module (Debian-based systems). |
+
+
+## ansible modules
+
+| Ansible Modules | Usage |
+| --- | --- |
+| apt | This module manages the packages on Debian and Ubuntu Systems. |
+| yum | This module manages the packages on Red Hat/ Cent [OS](https://www.geeksforgeeks.org/what-is-an-operating-system/) systems|
+| copy | This module helps in copying the files from local or Remote system to Destination system. |
+| file | This module manages the files and directories in local or Remote system. |
+| service | This module manages the services in the ansible|
+| shell | This module helps in executing shell commands on remote hosts. |
+| template | This module help in using the Jinja2 templates allowing dynamic content usage. |
+| cron | This module helps in managing the cron jobs, including the creation, modification and removal. |
+| git | This module helps in managing the repositories allowing tasks such as cloning, pulling and pushing. |
+
+
+### template module
+* refer to [ansible template module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html)
+
+```
+- name: Template a file to /etc/file.conf
+  ansible.builtin.template:
+    src: /mytemplates/foo.j2
+    dest: /etc/file.conf
+    owner: bin
+    group: wheel
+    mode: '0644'
+
+- name: Template a file, using symbolic modes (equivalent to 0644)
+  ansible.builtin.template:
+    src: /mytemplates/foo.j2
+    dest: /etc/file.conf
+    owner: bin
+    group: wheel
+    mode: u=rw,g=r,o=r
+
+- name: Copy a version of named.conf that is dependent on the OS. setype obtained by doing ls -Z /etc/named.conf on original file
+  ansible.builtin.template:
+    src: named.conf_{{ ansible_os_family }}.j2
+    dest: /etc/named.conf
+    group: named
+    setype: named_conf_t
+    mode: '0640'
+
+- name: Create a DOS-style text file from a template
+  ansible.builtin.template:
+    src: config.ini.j2
+    dest: /share/windows/config.ini
+    newline_sequence: '\r\n'
+
+- name: Copy a new sudoers file into place, after passing validation with visudo
+  ansible.builtin.template:
+    src: /mine/sudoers
+    dest: /etc/sudoers
+    validate: /usr/sbin/visudo -cf %s
+
+- name: Update sshd configuration safely, avoid locking yourself out
+  ansible.builtin.template:
+    src: etc/ssh/sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: '0600'
+    validate: /usr/sbin/sshd -t -f %s
+    backup: yes
+
+```
+
+### copy module
+* copy file
+```
+---
+- hosts: test
+  tasks:
+  - name: Ansible copy file to remote server
+    copy:
+      src: ~/sample.txt
+      dest: /tmp
+```
+
+* copy directory
+
+```
+---
+- hosts: test
+  tasks:
+  - name: Ansible copy directory to the remote server
+    copy:
+      src:/Users/mdtutorials2/Documents/Ansible/copy_dir_ex
+      dest:/Users/mdtutorials2/Documents/Ansible/tmp
+```
+
+* copy multi-files
+
+```
+
+- hosts: test
+  tasks:
+  - name: Ansible copy multiple files with_items
+    copy:
+      src: ~/{{item}}
+      dest: /tmp
+      mode: 0774
+    with_items:
+      ['hello1','hello2','hello3','sub_folder/hello4']
+
+```
+
+* Copying multiple files with different permission/destination settings
+
+```
+---
+- hosts: test
+  tasks:
+  - name: Copy multiple files in Ansible with different permissions
+    copy:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      mode: "{{item.mode}}"
+    with_items:
+      - { src: '~/test1',dest: '/tmp/system1', mode: '0777'}
+      - { src: '~/test2',dest: '/tmp/system2', mode: '0707'}
+      - { src: '~/test3',dest: '/tmp2/system3', mode: '0575'}
+```
+
+
+* Creating backup of a file in the remote servers before copy
+
+```
+- hosts: test
+  tasks:
+  - name: ansible copy file backup example
+    copy:
+      src: ~/helloworld.txt
+      dest: /tmp
+      backup: yes
+```
+
+* Copying files from remote machine to the local machine
+
+```
+- hosts: test
+  tasks:
+  - name: Ansible fetch files from remote server to the local machine using Ansible fetch module
+    fetch:
+      src: /tmp/hello2
+      dest: /etc
+      mode: 0774
+```
 
 ## reference
 * https://github.com/devops-cheat-sheets/ansible-cheat-sheet
