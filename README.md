@@ -10,8 +10,11 @@ Collected and wrote some cheat sheets here
 
     - https://github.com/gto76/python-cheatsheet/
 
+* [Ansible Cheat Sheet](ansible.md)
+
 
 ## Reference
 * [golang cheat sheet](https://gist.github.com/yokawasa/fc8ada72859569a60179c5414423f78f)
 * [vue chat sheet](https://github.com/dekadentno/vue-cheat-sheet/tree/master)
 * [flask cheat sheet](https://github.com/lucrae/flask-cheat-sheet/tree/master)
+* [ansible cheat sheet](https://github.com/Jooho/ansible-cheat-sheet)
