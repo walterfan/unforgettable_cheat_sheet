@@ -12,6 +12,9 @@ Collected and wrote some cheat sheets here
 
 * [Ansible Cheat Sheet](ansible.md)
 
+* [Golang Cheat Sheet](golang.md)
+
+* [GStreamer Cheat Sheet](gstreamer.md)
 
 ## Reference
 * [golang cheat sheet](https://gist.github.com/yokawasa/fc8ada72859569a60179c5414423f78f)
