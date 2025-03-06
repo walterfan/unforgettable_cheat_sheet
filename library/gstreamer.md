@@ -1,8 +1,126 @@
 # Gstreamer Cheat Sheet
 
-∑
+## **1. Installation**  
+### **Linux (Ubuntu/Debian)**  
+```bash
+sudo apt install gstreamer1.0-tools gstreamer1.0-plugins-base \
+gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
+```
+### **macOS (via Homebrew)**  
+```bash
+brew install gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
+```
+### **Windows**  
+Download from [GStreamer official site](https://gstreamer.freedesktop.org/download/)  
 
-## Pipeline examples
+---
+
+## **2. Basic Pipeline Commands**  
+### **Play a Video File**  
+```bash
+gst-launch-1.0 filesrc location=video.mp4 ! decodebin ! autovideosink
+```
+### **Play an Audio File**  
+```bash
+gst-launch-1.0 filesrc location=sound.mp3 ! decodebin ! autoaudiosink
+```
+### **Capture from Camera**  
+```bash
+gst-launch-1.0 v4l2src ! videoconvert ! autovideosink
+```
+### **Stream from Microphone**  
+```bash
+gst-launch-1.0 alsasrc ! audioconvert ! autoaudiosink
+```
+
+---
+
+## **3. Pipeline Components**  
+### **Sources** (Data Input)  
+- `filesrc` – Reads from a file  
+- `v4l2src` – Captures from a webcam  
+- `alsasrc` – Captures from a microphone  
+
+### **Decoders** (Converts media format)  
+- `decodebin` – Auto-decoder  
+- `avdec_h264` – H.264 decoder  
+- `avdec_mp3` – MP3 decoder  
+
+### **Encoders** (Compress media)  
+- `x264enc` – H.264 encoder  
+- `avenc_mp3` – MP3 encoder  
+
+### **Muxers** (Combines audio & video)  
+- `mp4mux` – MP4 container  
+- `matroskamux` – MKV container  
+
+### **Sinks** (Output media)  
+- `autovideosink` – Auto video output  
+- `autoaudiosink` – Auto audio output  
+- `filesink` – Writes to a file  
+
+---
+
+## **4. Streaming Over Network**  
+### **Stream Video Over UDP**  
+Sender:  
+```bash
+gst-launch-1.0 v4l2src ! videoconvert ! x264enc tune=zerolatency ! rtph264pay ! udpsink host=192.168.1.100 port=5000
+```
+Receiver:  
+```bash
+gst-launch-1.0 udpsrc port=5000 ! application/x-rtp,encoding-name=H264 ! rtph264depay ! decodebin ! autovideosink
+```
+
+### **RTMP Streaming to a Server**  
+```bash
+gst-launch-1.0 v4l2src ! videoconvert ! x264enc bitrate=500 ! flvmux ! rtmpsink location="rtmp://your-server/live/streamkey"
+```
+
+---
+
+## **5. Recording Audio & Video**  
+### **Record Video from Webcam**  
+```bash
+gst-launch-1.0 v4l2src ! videoconvert ! x264enc ! mp4mux ! filesink location=video.mp4
+```
+### **Record Audio from Microphone**  
+```bash
+gst-launch-1.0 alsasrc ! audioconvert ! avenc_mp3 ! filesink location=audio.mp3
+```
+
+---
+
+## **6. Debugging GStreamer Pipelines**  
+### **Check Installed Plugins**  
+```bash
+gst-inspect-1.0 | grep x264
+```
+### **Check Specific Plugin Details**  
+```bash
+gst-inspect-1.0 decodebin
+```
+### **Test Pipeline Without Running**  
+```bash
+gst-validate-launch-1.0 filesrc location=video.mp4 ! decodebin ! autovideosink
+```
+
+---
+
+## **7. GStreamer in Python**  
+```python
+import gi
+gi.require_version('Gst', '1.0')
+from gi.repository import Gst
+
+Gst.init(None)
+
+pipeline = Gst.parse_launch("videotestsrc ! autovideosink")
+pipeline.set_state(Gst.State.PLAYING)
+```
+
+
+## **8.Pipeline examples**
 
 | #  | Pipeline              | Description                                          | Tags                  | Content                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | -- | --------------------- | ---------------------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

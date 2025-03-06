@@ -2,21 +2,32 @@
 
 Collected and wrote some cheat sheets here
 
-* [Bash Cheat Sheet](bash.md)
+## Programming language
 
-    - from https://github.com/RehanSaeed/Bash-Cheat-Sheet
+* [Bash Cheat Sheet](./language/bash.md)
+* [Python Cheat Sheet](./language/python.md)
+* [Golang Cheat Sheet](./language/golang.md)
 
-* [Python Cheat Sheet](python.md)
+## Libaries and Frameworks
 
-    - https://github.com/gto76/python-cheatsheet/
+* [GStreamer Cheat Sheet](./library/gstreamer.md)
+* [Flask Cheat Sheet](./library/gstreamer.md)
+* [Quarkus Cheat Sheet](./library/gstreamer.md)
 
-* [Ansible Cheat Sheet](ansible.md)
+## Operation tools
 
-* [Golang Cheat Sheet](golang.md)
+* [Ansible Cheat Sheet](./operation/ansible.md)
+* [Docker Cheat Sheet 1](./operation/docker-cheat-sheet-1.png)
+* [Docker Cheat Sheet 2](./operation/docker-cheat-sheet-2.png)
+* [Docker Cheat Sheet 3](./operation/docker-cheat-sheet-3.png)
 
-* [GStreamer Cheat Sheet](gstreamer.md)
+## Artificial Intelligence
+
+* [Machine Learning Cheat Sheet](./ai/machine_learning.md)
 
 ## Reference
+* [bash cheat sheet](https://github.com/RehanSaeed/Bash-Cheat-Sheet)
+* [python cheat sheet](https://github.com/gto76/python-cheatsheet/)
 * [golang cheat sheet](https://gist.github.com/yokawasa/fc8ada72859569a60179c5414423f78f)
 * [vue chat sheet](https://github.com/dekadentno/vue-cheat-sheet/tree/master)
 * [flask cheat sheet](https://github.com/lucrae/flask-cheat-sheet/tree/master)
