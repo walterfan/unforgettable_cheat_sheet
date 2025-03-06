@@ -28,6 +28,6 @@ Collected and wrote some cheat sheets here
 * [bash cheat sheet](https://github.com/RehanSaeed/Bash-Cheat-Sheet)
 * [python cheat sheet](https://github.com/gto76/python-cheatsheet/)
 * [golang cheat sheet](https://gist.github.com/yokawasa/fc8ada72859569a60179c5414423f78f)
-* [vue chat sheet](https://github.com/dekadentno/vue-cheat-sheet/tree/master)
+* [vue cheat sheet](https://github.com/dekadentno/vue-cheat-sheet/tree/master)
 * [flask cheat sheet](https://github.com/lucrae/flask-cheat-sheet/tree/master)
 * [ansible cheat sheet](https://github.com/Jooho/ansible-cheat-sheet)
