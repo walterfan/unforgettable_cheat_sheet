@@ -9,7 +9,8 @@ Collected and wrote some cheat sheets here
 * [Golang Cheat Sheet](./language/golang.md)
 
 ## Libaries and Frameworks
-
+* [Git Cheat Sheet](./library/git.md)
+* [Regular Expression Cheat Sheet](./library/regex-cheat-sheet.pdf), [regex helper](https://github.com/walterfan/regex_helper)
 * [GStreamer Cheat Sheet](./library/gstreamer.md)
 * [Flask Cheat Sheet](./library/gstreamer.md)
 * [Quarkus Cheat Sheet](./library/gstreamer.md)
@@ -17,9 +18,7 @@ Collected and wrote some cheat sheets here
 ## Operation tools
 
 * [Ansible Cheat Sheet](./operation/ansible.md)
-* [Docker Cheat Sheet 1](./operation/docker-cheat-sheet-1.png)
-* [Docker Cheat Sheet 2](./operation/docker-cheat-sheet-2.png)
-* [Docker Cheat Sheet 3](./operation/docker-cheat-sheet-3.png)
+* [Docker Cheat Sheet 1](./operation/docker-cheat-sheet-1.png), [Docker Cheat Sheet 2](./operation/docker-cheat-sheet-2.png), [Docker Cheat Sheet 3](./operation/docker-cheat-sheet-3.png)
 
 ## Artificial Intelligence
 
