@@ -24,6 +24,8 @@ Collected and wrote some cheat sheets here
 * [Maven Cheat Sheet 1](./tool/maven-cheat-sheet-1.pdf), [Maven Cheat Sheet 2](./tool/maven-cheat-sheet-2.pdf)
 * [Ansible Cheat Sheet](./tool/ansible.md)
 * [Docker Cheat Sheet 1](./tool/docker-cheat-sheet-1.png), [Docker Cheat Sheet 2](./tool/docker-cheat-sheet-2.png), [Docker Cheat Sheet 3](./tool/docker-cheat-sheet-3.png)
+* [Kubectl Cheat Sheet](./tool/kubernetes-cheat-sheet.pdf)
+* [Helm Cheat Sheet](./tool/helm-cheat-sheet.pdf)
 
 ## Design Patterns
 
@@ -41,3 +43,4 @@ Collected and wrote some cheat sheets here
 * [vue cheat sheet](https://github.com/dekadentno/vue-cheat-sheet/tree/master)
 * [flask cheat sheet](https://github.com/lucrae/flask-cheat-sheet/tree/master)
 * [ansible cheat sheet](https://github.com/Jooho/ansible-cheat-sheet)
+* [helm cheat sheet](https://helm.sh/docs/intro/cheatsheet/)
